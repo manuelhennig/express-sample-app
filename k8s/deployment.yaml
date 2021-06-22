@@ -28,7 +28,7 @@ spec:
             - name: PROTOCOLS
             - name: LOG_LEVEL
               value: debug
-          image: quay.io/account-name/repo-name
+          image: quay.io/manuelhennig/mh-planet-express
           imagePullPolicy: IfNotPresent
           livenessProbe:
             failureThreshold: 3

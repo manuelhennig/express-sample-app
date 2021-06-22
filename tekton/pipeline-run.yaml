@@ -1,0 +1,22 @@
+apiVersion: tekton.dev/v1beta1
+kind: PipelineRun
+metadata:
+  generateName: pfs-run-
+spec:
+  pipelineRef:
+    name: pfs-pipeline
+  serviceAccountName: build-bot
+  params:
+    - name: source-repo
+      value: https://github.com/manuelhennig/express-sample-app
+    - name: image-repo
+      value: quay.io/manuelhennig/mh-planet-express
+  workspaces:
+    - name: pfs-shared-data
+      volumeClaimTemplate:
+        spec:
+          accessModes:
+            - ReadWriteOnce
+          resources:
+            requests:
+              storage: 1Gi
