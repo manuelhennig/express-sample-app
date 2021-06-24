@@ -95,3 +95,17 @@ spec:
       workspaces:
         - name: source
           workspace: pfs-shared-data
+    - name: gitops
+      runAfter:
+        - test-deploy
+      taskRef:
+        kind: Task
+        name: gitops
+      params:
+        - name: app-name
+          value: mh-planet-express
+        - name: sha
+          value: "$(tasks.clone-repository.results.commit)"
+      workspaces:
+        - name: source
+          workspace: pfs-shared-data
